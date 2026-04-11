@@ -1,670 +1,129 @@
-<app-navbar></app-navbar>
-<div class="min-h-screen bg-gray-50">
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-white">
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-      <div class="text-center" data-aos="fade-up">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-          Transform Your Ideas Into
-          <span class="bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent block sm:inline">
-            Digital Reality
-          </span>
-        </h1>
-        <p class="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-          Your services page isn't just a list; it's your sales tool. I build exceptional digital solutions 
-          that drive growth, engage users, and deliver measurable results for your business in South Africa.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-          <button 
-            (click)="openConsultationModal()"
-            class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-300">
-            Get Free Consultation
-          </button>
-          
-            
+<!-- Services Section -->
+<section class="py-16 sm:py-20 bg-gray-50" id="services">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              <button 
-            class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-black text-black hover:bg-black hover:text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-<a href="" >View Project</a>
-            
-          </button>
-
-        
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Grid -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-          My Services: Your Success Accelerators
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-          From concept to deployment and beyond, I offer comprehensive solutions tailored to your unique needs.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        <div 
-          *ngFor="let service of services; let i = index" 
-          class="bg-white rounded-2xl shadow-lg border service-card-hover p-6 sm:p-8 border-gray-200 hover:border-gray-400"
-          [attr.data-aos]="'fade-up'"
-          [attr.data-aos-delay]="i * 100">
-          
-          <!-- Service Header -->
-          <div class="flex items-start space-x-3 sm:space-x-4 mb-4 sm:mb-6">
-            <div class="text-3xl sm:text-4xl flex-shrink-0">{{ service.icon }}</div>
-            <div class="flex-1 min-w-0">
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-tight">{{ service.title }}</h3>
-              <p class="text-base sm:text-lg font-medium text-gray-700 mb-3 sm:mb-4">{{ service.subtitle }}</p>
-            </div>
-          </div>
-
-          <!-- Hook -->
-          <p class="text-gray-700 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">{{ service.hook }}</p>
-
-          <!-- Features -->
-          <div class="mb-4 sm:mb-6">
-            <h4 class="font-semibold text-gray-900 mb-2 sm:mb-3 text-sm sm:text-base">What I Deliver:</h4>
-            <ul class="space-y-1.5 sm:space-y-2">
-              <li *ngFor="let feature of service.features" class="flex items-start space-x-2 sm:space-x-3">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-gray-700 text-xs sm:text-sm leading-relaxed">{{ feature }}</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- USP -->
-          <div class="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-            <p class="text-xs sm:text-sm text-gray-700 italic">{{ service.usp }}</p>
-          </div>
-
-          <!-- CTAs -->
-          <div class="flex flex-col gap-3">
-            <button 
-              (click)="openQuoteModal(service.id)"
-              class="w-full px-4 sm:px-6 py-2.5 sm:py-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300 text-sm sm:text-base">
-              Get Quote
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How We Work Section -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-          My Proven Process
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-          A systematic approach that ensures quality, transparency, and success at every stage.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8">
-        <div 
-          *ngFor="let step of workSteps; let i = index"
-          class="text-center"
-          [attr.data-aos]="'fade-up'"
-          [attr.data-aos-delay]="i * 100">
-          
-          <div class="relative">
-            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-gray-800 to-black rounded-full flex items-center justify-center text-white text-lg sm:text-2xl font-bold mx-auto mb-3 sm:mb-4 shadow-lg">
-              {{ step.step }}
-            </div>
-            <!-- Connection line (hidden on mobile and last item) -->
-            <div *ngIf="i < workSteps.length - 1" class="hidden md:block absolute top-6 sm:top-8 left-full w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 transform -translate-y-1/2"></div>
-          </div>
-          
-          <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">{{ step.icon }}</div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{{ step.title }}</h3>
-          <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">{{ step.description }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack Section -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-          My Technology Arsenal
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-          I leverage cutting-edge technologies to build robust, scalable, and future-proof solutions.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-        <div 
-          *ngFor="let tech of techStack; let i = index"
-          class="bg-white rounded-xl p-4 sm:p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
-          [attr.data-aos]="'zoom-in'"
-          [attr.data-aos-delay]="i * 50">
-          
-          <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">{{ tech.logo }}</div>
-          <h3 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{{ tech.name }}</h3>
-          <p class="text-xs sm:text-sm text-gray-600">{{ tech.category }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Guarantees Section -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-          My Commitment to Excellence
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-          Your success is my priority. I stand behind my work with these guarantees.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        <div class="text-center p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-12 h-12 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Quality Guarantee</h3>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed">I deliver high-quality code that meets industry standards and best practices, backed by comprehensive testing.</p>
-        </div>
-
-        <div class="text-center p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-12 h-12 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Timely Delivery</h3>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed">I respect your deadlines and deliver projects on time, with regular updates throughout the development process.</p>
-        </div>
-
-        <div class="text-center p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-12 h-12 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Ongoing Support</h3>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Post-launch support and maintenance to ensure your application continues to perform optimally and securely.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
-        Ready to Transform Your Business?
+    <!-- Header -->
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+        My Services
       </h2>
-      <p class="text-lg sm:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-        Let's discuss your project and create a solution that drives growth, engages users, and delivers results.
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Turning ideas into reliable, high-quality digital solutions for South African businesses.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+    </div>
+
+    <!-- Services -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+      
+      <!-- Service 1 -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-all" data-aos="fade-up">
+        <div class="flex items-center gap-4 mb-6">
+          <!-- <span class="text-5xl">🚀</span> -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900">Full Web & Mobile Development</h3>
+            <p class="text-gray-500">End-to-End Solutions</p>
+          </div>
+        </div>
+        <p class="text-gray-700 leading-relaxed mb-8">
+          I build complete, scalable web and mobile applications from concept to launch and beyond.
+        </p>
         <button 
-          (click)="openConsultationModal()"
-          class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-black text-white hover:bg-gray-800 font-semibold rounded-lg transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-300">
-          Start Your Project Today
+          (click)="openQuoteModal('end-to-end')"
+          class="w-full bg-black text-white py-4 rounded-2xl font-semibold hover:bg-gray-800 transition-all">
+          Get Quote
         </button>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-all" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center gap-4 mb-6">
+          <!-- <span class="text-5xl">⚙️</span> -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900">Business Systems & Tools</h3>
+            <p class="text-gray-500">Custom Software</p>
+          </div>
+        </div>
+        <p class="text-gray-700 leading-relaxed mb-8">
+          Custom CRM, ERP, and internal systems designed to streamline your operations.
+        </p>
         <button 
-          (click)="openConsultationModal()"
-          class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-black text-black hover:bg-black hover:text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-          Schedule Free Consultation
+          (click)="openQuoteModal('systems')"
+          class="w-full bg-black text-white py-4 rounded-2xl font-semibold hover:bg-gray-800 transition-all">
+          Get Quote
+        </button>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-all" data-aos="fade-up">
+        <div class="flex items-center gap-4 mb-6">
+          <!-- <span class="text-5xl">⚡</span> -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900">Back-End Development</h3>
+            <p class="text-gray-500">Secure & Scalable</p>
+          </div>
+        </div>
+        <p class="text-gray-700 leading-relaxed mb-8">
+          Powerful, secure, and high-performance server-side solutions and APIs.
+        </p>
+        <button 
+          (click)="openQuoteModal('backend')"
+          class="w-full bg-black text-white py-4 rounded-2xl font-semibold hover:bg-gray-800 transition-all">
+          Get Quote
+        </button>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm hover:shadow-md transition-all" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center gap-4 mb-6">
+          <!-- <span class="text-5xl">🎨</span> -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900">Front-End Development</h3>
+            <p class="text-gray-500">Beautiful Interfaces</p>
+          </div>
+        </div>
+        <p class="text-gray-700 leading-relaxed mb-8">
+          Modern, responsive, and user-friendly interfaces that drive engagement.
+        </p>
+        <button 
+          (click)="openQuoteModal('frontend')"
+          class="w-full bg-black text-white py-4 rounded-2xl font-semibold hover:bg-gray-800 transition-all">
+          Get Quote
         </button>
       </div>
     </div>
-  </section>
 
-  <!-- Quote Modal -->
-  <div *ngIf="showQuoteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" (click)="closeQuoteModal()">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200">
-        <h3 class="text-2xl font-bold text-gray-900">Request a Quote</h3>
-        <button 
-          (click)="closeQuoteModal()"
-          class="text-gray-400 hover:text-gray-600 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+    <!-- My Proven Process -->
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">My Proven Process</h2>
+        <p class="text-gray-600 text-lg">A simple, transparent approach that delivers results.</p>
       </div>
 
-      <!-- Modal Body -->
-      <form action="https://api.web3forms.com/submit" method="POST" (ngSubmit)="submitQuote()" class="p-6 space-y-6">
-        <!-- Personal Information -->
-             <input
-          type="hidden"
-          name="access_key"
-          value="18155a87-df5c-4465-b923-8cb64eb3e1b3"
-        />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-            <input 
-              type="text" 
-              id="firstName" 
-              [(ngModel)]="quoteForm.firstName"
-              name="firstName"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-          <div>
-            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-            <input 
-              type="text" 
-              id="lastName" 
-              [(ngModel)]="quoteForm.lastName"
-              name="lastName"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-            <input 
-              type="email" 
-              id="email" 
-              [(ngModel)]="quoteForm.email"
-              name="email"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-          <div>
-            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              [(ngModel)]="quoteForm.phone"
-              name="phone"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-        </div>
-
-        <div>
-          <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-          <input 
-            type="text" 
-            id="company" 
-            [(ngModel)]="quoteForm.company"
-            name="company"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-        </div>
-
-        <!-- Service Selection -->
-        <div>
-          <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Interested In *</label>
-          <select 
-            id="service" 
-            [(ngModel)]="quoteForm.serviceId"
-            name="service"
-            required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-            <option value="">Select a service</option>
-            <option *ngFor="let service of services" [value]="service.id">{{ service.title }}</option>
-          </select>
-        </div>
-
-        <!-- Project Details -->
-        <div>
-          <label for="projectDescription" class="block text-sm font-medium text-gray-700 mb-2">Project Description *</label>
-          <textarea 
-            id="projectDescription" 
-            [(ngModel)]="quoteForm.projectDescription"
-            name="projectDescription"
-            required
-            rows="4"
-            placeholder="Please describe your project requirements, goals, and any specific features you need..."
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all resize-none"></textarea>
-        </div>
-
-        <!-- Timeline -->
-        <div>
-          <label for="timeline" class="block text-sm font-medium text-gray-700 mb-2">Desired Timeline</label>
-          <select 
-            id="timeline" 
-            [(ngModel)]="quoteForm.timeline"
-            name="timeline"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-            <option value="">Select timeline</option>
-            <option value="asap">ASAP</option>
-            <option value="1-month">Within 1 month</option>
-            <option value="2-3-months">2-3 months</option>
-            <option value="3-6-months">3-6 months</option>
-            <option value="flexible">Flexible</option>
-          </select>
-        </div>
-
-        <!-- File Upload -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Upload Design Files or Documents</label>
-          <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-            <input 
-              type="file" 
-              id="fileUpload"
-              (change)="onFileSelected($event)"
-              multiple
-              accept=".fig,.pdf,.doc,.docx,.png,.jpg,.jpeg,.zip"
-              class="hidden">
-            <label for="fileUpload" class="cursor-pointer">
-              <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-              </svg>
-              <p class="text-gray-600 mb-2">Click to upload or drag and drop</p>
-              <p class="text-sm text-gray-500">Figma files, PDFs, Images, Documents (Max 10MB each)</p>
-            </label>
-          </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div *ngFor="let step of workSteps; let i = index" 
+             class="text-center" 
+             [attr.data-aos]="'fade-up'"
+             [attr.data-aos-delay]="i * 80">
           
-          <!-- Selected Files Display -->
-          <div *ngIf="selectedFiles.length > 0" class="mt-4">
-            <h4 class="text-sm font-medium text-gray-700 mb-2">Selected Files:</h4>
-            <div class="space-y-2">
-              <div *ngFor="let file of selectedFiles; let i = index" class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                <div class="flex items-center space-x-3">
-                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                  </svg>
-                  <span class="text-sm text-gray-700">{{ file.name }}</span>
-                  <span class="text-xs text-gray-500">({{ formatFileSize(file.size) }})</span>
-                </div>
-                <button 
-                  type="button"
-                  (click)="removeFile(i)"
-                  class="text-red-500 hover:text-red-700 transition-colors">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Additional Notes -->
-        <div>
-          <label for="additionalNotes" class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
-          <textarea 
-            id="additionalNotes" 
-            [(ngModel)]="quoteForm.additionalNotes"
-            name="additionalNotes"
-            rows="3"
-            placeholder="Any additional information, specific requirements, or questions..."
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all resize-none"></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="flex flex-col sm:flex-row gap-3 pt-4">
-          <button 
-            type="submit"
-            [disabled]="isSubmitting"
-            class="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-            <span *ngIf="!isSubmitting">Send Quote Request</span>
-            <span *ngIf="isSubmitting" class="flex items-center justify-center">
-              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Sending...
-            </span>
-          </button>
-          <button 
-            type="button"
-            (click)="closeQuoteModal()"
-            class="flex-1 sm:flex-none border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Consultation Modal -->
-  <div *ngIf="showConsultationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" (click)="closeConsultationModal()">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200">
-        <h3 class="text-2xl font-bold text-gray-900">Schedule Free Consultation</h3>
-        <button 
-          (click)="closeConsultationModal()"
-          class="text-gray-400 hover:text-gray-600 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Modal Body -->
-      <form action="https://api.web3forms.com/submit" method="POST" (ngSubmit)="submitConsultation()" class="p-6 space-y-6">
-        <!-- Personal Information -->
-             <input
-          type="hidden"
-          name="access_key"
-          value="18155a87-df5c-4465-b923-8cb64eb3e1b3"
-        />
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="consultFirstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-            <input 
-              type="text" 
-              id="consultFirstName" 
-              [(ngModel)]="consultationForm.firstName"
-              name="consultFirstName"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-          <div>
-            <label for="consultLastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-            <input 
-              type="text" 
-              id="consultLastName" 
-              [(ngModel)]="consultationForm.lastName"
-              name="consultLastName"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="consultEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-            <input 
-              type="email" 
-              id="consultEmail" 
-              [(ngModel)]="consultationForm.email"
-              name="consultEmail"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-          <div>
-            <label for="consultPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-            <input 
-              type="tel" 
-              id="consultPhone" 
-              [(ngModel)]="consultationForm.phone"
-              name="consultPhone"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-          </div>
-        </div>
-
-        <div>
-          <label for="consultCompany" class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-          <input 
-            type="text" 
-            id="consultCompany" 
-            [(ngModel)]="consultationForm.company"
-            name="consultCompany"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-        </div>
-
-        <!-- Project Type -->
-        <div>
-          <label for="projectType" class="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
-          <select 
-            id="projectType" 
-            [(ngModel)]="consultationForm.projectType"
-            name="projectType"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-            <option value="">Select project type</option>
-            <option value="web-application">Web Application</option>
-            <option value="mobile-application">Mobile Application</option>
-            <option value="system-application">System Application</option>
-            <option value="backend-development">Backend Development</option>
-            <option value="frontend-development">Frontend Development</option>
-            <option value="devops-consulting">DevOps Consulting</option>
-            <option value="maintenance-support">Maintenance & Support</option>
-            <option value="consultation-strategy">Consultation & Strategy</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <!-- Project Description -->
-        <div>
-          <label for="consultProjectDescription" class="block text-sm font-medium text-gray-700 mb-2">Project Description *</label>
-          <textarea 
-            id="consultProjectDescription" 
-            [(ngModel)]="consultationForm.projectDescription"
-            name="consultProjectDescription"
-            required
-            rows="4"
-            placeholder="Tell us about your project idea, goals, and what you're looking to achieve..."
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all resize-none"></textarea>
-        </div>
-
-        <!-- Timeline -->
-        <div>
-          <label for="consultTimeline" class="block text-sm font-medium text-gray-700 mb-2">Desired Timeline</label>
-          <select 
-            id="consultTimeline" 
-            [(ngModel)]="consultationForm.timeline"
-            name="consultTimeline"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-            <option value="">Select timeline</option>
-            <option value="asap">ASAP</option>
-            <option value="1-month">Within 1 month</option>
-            <option value="2-3-months">2-3 months</option>
-            <option value="3-6-months">3-6 months</option>
-            <option value="6-12-months">6-12 months</option>
-            <option value="flexible">Flexible</option>
-          </select>
-        </div>
-
-        <!-- Preferred Contact Method -->
-        <div>
-          <label for="contactMethod" class="block text-sm font-medium text-gray-700 mb-2">Preferred Contact Method</label>
-          <select 
-            id="contactMethod" 
-            [(ngModel)]="consultationForm.preferredContactMethod"
-            name="contactMethod"
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all">
-            <option value="email">Email</option>
-            <option value="phone">Phone Call</option>
-            <option value="video">Video Call</option>
-            <option value="in-person">In-Person Meeting</option>
-          </select>
-        </div>
-
-        <!-- File Upload -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Upload Design Files or Documents (Optional)</label>
-          <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
-            <input 
-              type="file" 
-              id="consultFileUpload"
-              (change)="onConsultationFileSelected($event)"
-              multiple
-              accept=".fig,.pdf,.doc,.docx,.png,.jpg,.jpeg,.zip"
-              class="hidden">
-            <label for="consultFileUpload" class="cursor-pointer">
-              <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-              </svg>
-              <p class="text-gray-600 mb-2">Click to upload or drag and drop</p>
-              <p class="text-sm text-gray-500">Figma files, PDFs, Images, Documents (Max 10MB each)</p>
-            </label>
-          </div>
+          <!-- <div class="w-16 h-16 mx-auto mb-4 bg-black text-white rounded-2xl flex items-center justify-center text-3xl font-bold shadow-md">
+            {{ step.step }}
+          </div> -->
           
-          <!-- Selected Files Display -->
-          <div *ngIf="selectedConsultationFiles.length > 0" class="mt-4">
-            <h4 class="text-sm font-medium text-gray-700 mb-2">Selected Files:</h4>
-            <div class="space-y-2">
-              <div *ngFor="let file of selectedConsultationFiles; let i = index" class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                <div class="flex items-center space-x-3">
-                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                  </svg>
-                  <span class="text-sm text-gray-700">{{ file.name }}</span>
-                  <span class="text-xs text-gray-500">({{ formatFileSize(file.size) }})</span>
-                </div>
-                <button 
-                  type="button"
-                  (click)="removeConsultationFile(i)"
-                  class="text-red-500 hover:text-red-700 transition-colors">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
+          <div class="text-4xl mb-3">{{ step.icon }}</div>
+          <h3 class="font-semibold text-gray-900 mb-2">{{ step.title }}</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">{{ step.description }}</p>
         </div>
-
-        <!-- Additional Notes -->
-        <div>
-          <label for="consultAdditionalNotes" class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
-          <textarea 
-            id="consultAdditionalNotes" 
-            [(ngModel)]="consultationForm.additionalNotes"
-            name="consultAdditionalNotes"
-            rows="3"
-            placeholder="Any additional information, questions, or specific requirements you'd like to discuss..."
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all resize-none"></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="flex flex-col sm:flex-row gap-3 pt-4">
-          <button 
-            type="submit"
-            [disabled]="isSubmittingConsultation"
-            class="flex-1 bg-black hover:bg-gray-800 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-            <span *ngIf="!isSubmittingConsultation">Schedule Consultation</span>
-            <span *ngIf="isSubmittingConsultation" class="flex items-center justify-center">
-              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Scheduling...
-            </span>
-          </button>
-          <button 
-            type="button"
-            (click)="closeConsultationModal()"
-            class="flex-1 sm:flex-none border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 font-semibold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300">
-            Cancel
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
+
+    <!-- Final CTA -->
+    <div class="text-center mt-20" data-aos="fade-up">
+      <button 
+        (click)="openConsultationModal()"
+        class="px-12 py-5 bg-black text-white text-lg font-semibold rounded-3xl hover:bg-gray-800 transition-all hover:scale-105">
+        Ready to start your project? Let's talk
+      </button>
+    </div>
+
   </div>
-</div>
-<br>
-<br>
-
-
-<app-footer></app-footer>
+</section>

@@ -1,29 +1,14 @@
-/* Component-specific styles for ServicesPageComponent */
+/* Services Section - Modern & Simple */
 
 .service-card-hover {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-width: 2px;
 }
 
 .service-card-hover:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
-/* Custom gradient backgrounds */
-.gradient-primary {
-  background: linear-gradient(135deg, #374151 0%, #111827 100%);
-}
-
-.gradient-secondary {
-  background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
-}
-
-.gradient-accent {
-  background: linear-gradient(135deg, #6b7280 0%, #374151 100%);
-}
-
-/* Enhanced button animations */
 button {
   position: relative;
   overflow: hidden;
@@ -36,282 +21,32 @@ button::before {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
 }
 
 button:hover::before {
   left: 100%;
 }
 
-/* Enhanced card animations */
-@keyframes cardPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
+/* Process Step Styling */
+.process-step {
+  transition: transform 0.3s ease;
 }
 
-.service-card-hover:hover {
-  animation: cardPulse 2s infinite;
+.process-step:hover {
+  transform: translateY(-4px);
 }
 
-/* Custom scrollbar for the page */
-.services-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.services-container::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 6px;
-}
-
-.services-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #374151, #111827);
-  border-radius: 6px;
-}
-
-.services-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #4b5563, #1f2937);
-}
-
-/* Enhanced icon animations */
-.tech-icon {
-  transition: all 0.3s ease;
-}
-
-.tech-icon:hover {
-  transform: scale(1.2) rotate(5deg);
-}
-
-/* Floating animation for hero elements */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Enhanced focus states for accessibility */
-button:focus,
-.service-card-hover:focus {
-  outline: 3px solid rgba(107, 114, 128, 0.5);
-  outline-offset: 2px;
-}
-
-/* Enhanced loading states */
-.loading {
-  position: relative;
-  overflow: hidden;
-}
-
-.loading::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Mobile responsive improvements */
 @media (max-width: 640px) {
-  .service-card-hover {
-    padding: 1.5rem;
-    transform: none !important; /* Disable hover transform on mobile */
-  }
-  
-  .service-card-hover:hover {
-    transform: none !important;
-    animation: none;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .service-card-hover h3 {
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
-  
-  .service-card-hover p {
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  /* Improve touch targets on mobile */
   button {
-    min-height: 44px;
-  }
-
-  /* Better spacing for mobile */
-  .grid {
-    gap: 1rem;
+    padding: 1rem;
   }
 }
 
-/* Tablet responsive improvements */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .service-card-hover {
-    padding: 2rem;
-  }
-}
-
-/* Enhanced hover effects for devices that support hover */
-@media (hover: hover) and (pointer: fine) {
-  .service-card-hover:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.15);
-    animation: cardPulse 2s infinite;
-  }
-}
-
-/* Remove hover effects for touch devices */
-@media (hover: none) {
-  .service-card-hover:hover {
-    transform: none;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    animation: none;
-  }
-}
-
-/* Modal specific styles */
-.modal-backdrop {
-  backdrop-filter: blur(4px);
-}
-
-/* Smooth modal animations */
-.modal-enter {
-  animation: modalFadeIn 0.3s ease-out;
-}
-
-.modal-leave {
-  animation: modalFadeOut 0.3s ease-in;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes modalFadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
-
-/* File upload area improvements */
-.file-upload-area {
-  transition: all 0.3s ease;
-}
-
-.file-upload-area:hover {
-  border-color: #6b7280;
-  background-color: #f9fafb;
-}
-
-/* Form input improvements */
-input:focus,
-select:focus,
-textarea:focus {
-  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
-}
-
-/* Loading spinner */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-/* Dark mode support (if needed in future) */
-@media (prefers-color-scheme: dark) {
-  .dark-mode .service-card-hover {
-    background-color: #1f2937;
-    border-color: #374151;
-  }
-  
-  .dark-mode .service-card-hover:hover {
-    border-color: #4b5563;
-  }
-}
-
-/* Print styles */
-@media print {
-  .service-card-hover {
-    break-inside: avoid;
-    box-shadow: none;
-    border: 2px solid #e5e7eb;
-  }
-  
-  button {
-    display: none;
-  }
-  
-  .modal {
-    display: none;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .service-card-hover {
-    border-width: 3px;
-  }
-  
-  button {
-    border: 2px solid;
-  }
-}
-
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .service-card-hover {
+  .service-card-hover,
+  button {
     transition: none;
-  }
-  
-  .service-card-hover:hover {
-    transform: none;
-    animation: none;
-  }
-  
-  button::before {
-    transition: none;
-  }
-  
-  .floating {
-    animation: none;
   }
 }
