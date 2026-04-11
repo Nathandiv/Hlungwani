@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         if (typedElement) {
           new Typed('.typed', {
             strings: [
-              'System Developer',
+              'System Engineer',
               'Full-Stack Developer',
               'Web Developer',
               'Mobile App Developer',
