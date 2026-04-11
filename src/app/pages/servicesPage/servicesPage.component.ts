@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import * as AOS from 'aos';
 import { NavbarComponent } from '../../Shared-Ui/navbar/navbar.component';
 import { FooterComponent } from '../../Shared-Ui/footer/footer.component';
@@ -59,9 +59,6 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
   isSubmitting: boolean = false;
   isSubmittingConsultation: boolean = false;
 
-  selectedFiles: File[] = [];
-  selectedConsultationFiles: File[] = [];
-
   quoteForm: QuoteForm = {
     firstName: '', lastName: '', email: '', phone: '', company: '',
     serviceId: '', projectDescription: '', timeline: '', budget: '', additionalNotes: ''
@@ -96,6 +93,7 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     AOS.refresh();
   }
 
+  // Open / Close Modals
   openQuoteModal(serviceId: string): void {
     this.quoteForm.serviceId = serviceId;
     this.showQuoteModal = true;
@@ -104,7 +102,7 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
 
   closeQuoteModal(): void {
     this.showQuoteModal = false;
-    this.resetForm();
+    this.resetQuoteForm();
     document.body.style.overflow = 'auto';
   }
 
@@ -119,51 +117,118 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     document.body.style.overflow = 'auto';
   }
 
-  submitQuote(): void {
-    if (!this.isFormValid()) {
+  // ==================== SUBMIT QUOTE FORM ====================
+  async submitQuote(ngForm: NgForm) {
+    if (ngForm.invalid) {
       alert('Please fill in all required fields.');
       return;
     }
+
     this.isSubmitting = true;
-    setTimeout(() => {
-      alert('Thank you! Your quote request has been submitted. I\'ll get back to you within 24 hours.');
-      this.closeQuoteModal();
+
+    const formData = new FormData();
+    formData.append('access_key', '18155a87-df5c-4465-b923-8cb64eb3e1b3');
+    formData.append('subject', 'New Quote Request - NexGrow');
+    formData.append('from_name', 'NexGrow Website');
+
+    // Add Quote Form Fields
+    formData.append('firstName', this.quoteForm.firstName);
+    formData.append('lastName', this.quoteForm.lastName);
+    formData.append('email', this.quoteForm.email);
+    formData.append('phone', this.quoteForm.phone || 'Not provided');
+    formData.append('company', this.quoteForm.company || 'Not provided');
+    formData.append('service', this.quoteForm.serviceId);
+    formData.append('projectDescription', this.quoteForm.projectDescription);
+    formData.append('timeline', this.quoteForm.timeline || 'Not specified');
+    formData.append('budget', this.quoteForm.budget || 'Not specified');
+    formData.append('additionalNotes', this.quoteForm.additionalNotes || '');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Thank you! Your quote request has been sent successfully. I will get back to you soon.');
+        ngForm.resetForm();
+        this.resetQuoteForm();
+        this.closeQuoteModal();
+      } else {
+        alert(`Submission failed: ${result.message || 'Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please try again later.');
+    } finally {
       this.isSubmitting = false;
-    }, 1200);
+    }
   }
 
-  submitConsultation(): void {
-    if (!this.isConsultationFormValid()) {
+  // ==================== SUBMIT CONSULTATION FORM ====================
+  async submitConsultation(ngForm: NgForm) {
+    if (ngForm.invalid) {
       alert('Please fill in all required fields.');
       return;
     }
+
     this.isSubmittingConsultation = true;
-    setTimeout(() => {
-      alert('Thank you! Your consultation request has been sent. I\'ll contact you soon.');
-      this.closeConsultationModal();
+
+    const formData = new FormData();
+    formData.append('access_key', '18155a87-df5c-4465-b923-8cb64eb3e1b3');
+    formData.append('subject', 'New Consultation Request - NexGrow');
+    formData.append('from_name', 'Nathan Website Consultation Form');
+
+    // Add Consultation Form Fields
+    formData.append('firstName', this.consultationForm.firstName);
+    formData.append('lastName', this.consultationForm.lastName);
+    formData.append('email', this.consultationForm.email);
+    formData.append('phone', this.consultationForm.phone || 'Not provided');
+    formData.append('company', this.consultationForm.company || 'Not provided');
+    formData.append('projectType', this.consultationForm.projectType || 'Not specified');
+    formData.append('projectDescription', this.consultationForm.projectDescription);
+    formData.append('timeline', this.consultationForm.timeline || 'Not specified');
+    formData.append('preferredContactMethod', this.consultationForm.preferredContactMethod);
+    formData.append('additionalNotes', this.consultationForm.additionalNotes || '');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('Thank you! Your consultation request has been sent. I will contact you soon.');
+        ngForm.resetForm();
+        this.resetConsultationForm();
+        this.closeConsultationModal();
+      } else {
+        alert(`Submission failed: ${result.message || 'Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please try again later.');
+    } finally {
       this.isSubmittingConsultation = false;
-    }, 1200);
+    }
   }
 
-  private isFormValid(): boolean {
-    return !!(this.quoteForm.firstName && this.quoteForm.lastName && this.quoteForm.email && 
-              this.quoteForm.serviceId && this.quoteForm.projectDescription);
-  }
-
-  private isConsultationFormValid(): boolean {
-    return !!(this.consultationForm.firstName && this.consultationForm.lastName && 
-              this.consultationForm.email && this.consultationForm.projectDescription);
-  }
-
-  private resetForm(): void {
-    this.quoteForm = { firstName: '', lastName: '', email: '', phone: '', company: '', serviceId: '', 
-                       projectDescription: '', timeline: '', budget: '', additionalNotes: '' };
-    this.selectedFiles = [];
+  private resetQuoteForm(): void {
+    this.quoteForm = {
+      firstName: '', lastName: '', email: '', phone: '', company: '',
+      serviceId: '', projectDescription: '', timeline: '', budget: '', additionalNotes: ''
+    };
   }
 
   private resetConsultationForm(): void {
-    this.consultationForm = { firstName: '', lastName: '', email: '', phone: '', company: '', projectType: '', 
-                              projectDescription: '', timeline: '', preferredContactMethod: 'email', additionalNotes: '' };
-    this.selectedConsultationFiles = [];
+    this.consultationForm = {
+      firstName: '', lastName: '', email: '', phone: '', company: '',
+      projectType: '', projectDescription: '', timeline: '',
+      preferredContactMethod: 'email', additionalNotes: ''
+    };
   }
 }

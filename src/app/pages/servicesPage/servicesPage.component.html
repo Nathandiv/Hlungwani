@@ -131,7 +131,7 @@
     </div>
 
     <!-- Modal Body -->
-    <form (ngSubmit)="submitQuote()" class="p-6 space-y-6 overflow-y-auto max-h-[calc(92vh-80px)]">
+    <form #quoteNgForm="ngForm" (ngSubmit)="submitQuote(quoteNgForm)" class="p-6 space-y-6 overflow-y-auto max-h-[calc(92vh-80px)]">
       <input type="hidden" name="access_key" value="18155a87-df5c-4465-b923-8cb64eb3e1b3" />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -200,7 +200,7 @@
       <button (click)="closeConsultationModal()" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">×</button>
     </div>
 
-    <form (ngSubmit)="submitConsultation()" class="p-6 space-y-6 overflow-y-auto max-h-[calc(92vh-80px)]">
+    <form #consultNgForm="ngForm" (ngSubmit)="submitConsultation(consultNgForm)" class="p-6 space-y-6 overflow-y-auto max-h-[calc(92vh-80px)]">
       <input type="hidden" name="access_key" value="18155a87-df5c-4465-b923-8cb64eb3e1b3" />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
