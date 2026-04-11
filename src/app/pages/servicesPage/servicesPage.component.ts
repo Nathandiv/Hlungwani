@@ -56,6 +56,9 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
 
   showQuoteModal: boolean = false;
   showConsultationModal: boolean = false;
+  showSuccessModal: boolean = false;
+  successMessage: string = '';
+
   isSubmitting: boolean = false;
   isSubmittingConsultation: boolean = false;
 
@@ -93,7 +96,6 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     AOS.refresh();
   }
 
-  // Open / Close Modals
   openQuoteModal(serviceId: string): void {
     this.quoteForm.serviceId = serviceId;
     this.showQuoteModal = true;
@@ -117,7 +119,25 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     document.body.style.overflow = 'auto';
   }
 
-  // ==================== SUBMIT QUOTE FORM ====================
+  // Success Modal
+  showSuccess(message: string): void {
+    this.successMessage = message;
+    this.showSuccessModal = true;
+    document.body.style.overflow = 'hidden';
+
+    // Auto close after 3 seconds
+    setTimeout(() => {
+      this.closeSuccessModal();
+    }, 3000);
+  }
+
+  closeSuccessModal(): void {
+    this.showSuccessModal = false;
+    this.successMessage = '';
+    document.body.style.overflow = 'auto';
+  }
+
+  // Submit Quote
   async submitQuote(ngForm: NgForm) {
     if (ngForm.invalid) {
       alert('Please fill in all required fields.');
@@ -131,7 +151,6 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     formData.append('subject', 'New Quote Request - NexGrow');
     formData.append('from_name', 'NexGrow Website');
 
-    // Add Quote Form Fields
     formData.append('firstName', this.quoteForm.firstName);
     formData.append('lastName', this.quoteForm.lastName);
     formData.append('email', this.quoteForm.email);
@@ -140,7 +159,6 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     formData.append('service', this.quoteForm.serviceId);
     formData.append('projectDescription', this.quoteForm.projectDescription);
     formData.append('timeline', this.quoteForm.timeline || 'Not specified');
-    formData.append('budget', this.quoteForm.budget || 'Not specified');
     formData.append('additionalNotes', this.quoteForm.additionalNotes || '');
 
     try {
@@ -152,7 +170,7 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
       const result = await response.json();
 
       if (result.success) {
-        alert('Thank you! Your quote request has been sent successfully. I will get back to you soon.');
+        this.showSuccess("Thank you! Your quote request has been sent successfully. I will get back to you soon.");
         ngForm.resetForm();
         this.resetQuoteForm();
         this.closeQuoteModal();
@@ -167,7 +185,7 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ==================== SUBMIT CONSULTATION FORM ====================
+  // Submit Consultation
   async submitConsultation(ngForm: NgForm) {
     if (ngForm.invalid) {
       alert('Please fill in all required fields.');
@@ -179,9 +197,8 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
     const formData = new FormData();
     formData.append('access_key', '18155a87-df5c-4465-b923-8cb64eb3e1b3');
     formData.append('subject', 'New Consultation Request - NexGrow');
-    formData.append('from_name', 'Nathan Website Consultation Form');
+    formData.append('from_name', 'NexGrow Website');
 
-    // Add Consultation Form Fields
     formData.append('firstName', this.consultationForm.firstName);
     formData.append('lastName', this.consultationForm.lastName);
     formData.append('email', this.consultationForm.email);
@@ -202,7 +219,7 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
       const result = await response.json();
 
       if (result.success) {
-        alert('Thank you! Your consultation request has been sent. I will contact you soon.');
+        this.showSuccess("Thank you! Your consultation request has been sent successfully. I will contact you soon.");
         ngForm.resetForm();
         this.resetConsultationForm();
         this.closeConsultationModal();
