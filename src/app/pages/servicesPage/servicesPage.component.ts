@@ -148,8 +148,8 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
 
     const formData = new FormData();
     formData.append('access_key', '18155a87-df5c-4465-b923-8cb64eb3e1b3');
-    formData.append('subject', 'New Quote Request - NexGrow');
-    formData.append('from_name', 'NexGrow Website');
+    formData.append('subject', 'New Quote Request - Nathan Website');
+    formData.append('from_name', 'Nathan Website Quote Form');
 
     formData.append('firstName', this.quoteForm.firstName);
     formData.append('lastName', this.quoteForm.lastName);
@@ -196,8 +196,8 @@ export class ServicesPageComponent implements OnInit, OnDestroy {
 
     const formData = new FormData();
     formData.append('access_key', '18155a87-df5c-4465-b923-8cb64eb3e1b3');
-    formData.append('subject', 'New Consultation Request - NexGrow');
-    formData.append('from_name', 'NexGrow Website');
+    formData.append('subject', 'New Consultation Request - Nathan Website');
+    formData.append('from_name', 'Nathan Website');
 
     formData.append('firstName', this.consultationForm.firstName);
     formData.append('lastName', this.consultationForm.lastName);

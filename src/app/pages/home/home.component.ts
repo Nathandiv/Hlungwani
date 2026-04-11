@@ -5,11 +5,12 @@ import AOS from 'aos';
 import Typed from 'typed.js';
 import 'aos/dist/aos.css';
 import { LoaderComponent } from '../loader/loader.component';
+import { ServicesPageComponent } from "../servicesPage/servicesPage.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, FooterComponent, LoaderComponent],
+  imports: [NavbarComponent, FooterComponent, LoaderComponent, ServicesPageComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
